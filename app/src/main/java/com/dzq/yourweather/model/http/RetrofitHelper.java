@@ -42,8 +42,17 @@ public class RetrofitHelper {
         weatherApiService = getWeatherApiService();
     }
 
-    public RetrofitHelper() {
+    private RetrofitHelper() {
         init();
+    }
+
+    private static RetrofitHelper mInstance;
+
+    public static RetrofitHelper getInstance(){
+        if (mInstance == null) {
+            mInstance = new RetrofitHelper();
+        }
+        return mInstance;
     }
 
     private static void initOkHttp() {

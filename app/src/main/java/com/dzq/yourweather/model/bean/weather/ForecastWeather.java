@@ -45,5 +45,12 @@ public class ForecastWeather {
         this.daily_forecast = daily_forecast;
     }
 
-
+    @Override
+    public String toString() {
+        return "ForecastWeather{" +
+                "basic=" + basic +
+                ", status='" + status + '\'' +
+                ", daily_forecast=" + daily_forecast +
+                '}';
+    }
 }
