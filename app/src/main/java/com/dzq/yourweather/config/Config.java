@@ -1,6 +1,6 @@
 package com.dzq.yourweather.config;
 
-import com.dzq.yourweather.MyApp;
+import android.os.Environment;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ public class Config {
 
     public static boolean isDebug = false;
 
-    public static final String PATH_DATA = MyApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "/data";
+    public static final String PATH_DATA = /*MyApp.getInstance().getCacheDir().getAbsolutePath()*/Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "/data";
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
 
     public static final String KEY_API = "";

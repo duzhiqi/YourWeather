@@ -1,6 +1,8 @@
 package com.dzq.yourweather.model.http;
 
 
+import android.util.Log;
+
 import com.dzq.yourweather.config.Config;
 import com.dzq.yourweather.model.bean.Weather;
 import com.dzq.yourweather.model.bean.alarm.DamageAlarm;
@@ -128,6 +130,7 @@ public class RetrofitHelper {
     }
 
     public Observable<WeatherResponse<ForecastWeather>> obtainForecastWeather(String cityInfo) {
+        Log.e("dzq", "getData2");
         return weatherApiService.getForecastWeather(cityInfo, Config.MY_WEATHER_KEY);
     }
 

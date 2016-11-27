@@ -20,7 +20,7 @@ import rx.Observable;
 public interface WeatherApis {
 
     //7-10天预报
-    @GET("/forecast")
+    @GET("forecast")
     Observable<WeatherResponse<ForecastWeather>> getForecastWeather
             (@Query("city") String cityInfo, @Query("key") String key);
 

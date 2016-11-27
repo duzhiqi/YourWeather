@@ -3,7 +3,7 @@ package com.dzq.yourweather.ui.activity;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.dzq.yourweather.presenter.BasePersenter;
+import com.dzq.yourweather.presenter.BasePresenter;
 import com.dzq.yourweather.ui.BaseView;
 
 import butterknife.ButterKnife;
@@ -35,6 +35,6 @@ public abstract class BaseActivity extends Activity implements BaseView {
     }
 
     protected abstract int getLayout();
-    protected abstract BasePersenter getMyPresenter();
+    protected abstract BasePresenter getMyPresenter();
     protected abstract void initData();
 }

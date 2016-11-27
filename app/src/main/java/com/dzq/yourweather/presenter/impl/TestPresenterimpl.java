@@ -1,5 +1,7 @@
 package com.dzq.yourweather.presenter.impl;
 
+import android.util.Log;
+
 import com.dzq.yourweather.model.bean.weather.ForecastWeather;
 import com.dzq.yourweather.model.http.RetrofitHelper;
 import com.dzq.yourweather.model.http.WeatherResponse;
@@ -20,7 +22,7 @@ import rx.schedulers.Schedulers;
  * Created by dzq on 2016/11/25.
  */
 
-public class TestPresenterImpl extends BasePersenterImpl implements ITestPresenter{
+public class TestPresenterImpl extends BasePresenterImpl implements ITestPresenter{
 
     private RetrofitHelper mRetrofitHelper;
     private ITestActivity mView;
@@ -45,11 +47,13 @@ public class TestPresenterImpl extends BasePersenterImpl implements ITestPresent
                 .subscribe(new Observer<ForecastWeather>() {
                     @Override
                     public void onCompleted() {
+                        Log.e("dzq", "onCompleted");
                         mView.hideProgress();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e("dzq", "Error: " + e.getMessage());
                         mView.showError();
                     }
 

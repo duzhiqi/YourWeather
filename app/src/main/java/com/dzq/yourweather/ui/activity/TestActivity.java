@@ -1,10 +1,12 @@
 package com.dzq.yourweather.ui.activity;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.dzq.yourweather.R;
-import com.dzq.yourweather.presenter.BasePersenter;
+import com.dzq.yourweather.presenter.BasePresenter;
 import com.dzq.yourweather.presenter.impl.TestPresenterImpl;
 import com.dzq.yourweather.ui.ITestActivity;
 
@@ -15,7 +17,7 @@ import butterknife.BindView;
  * Created by dzq on 2016/11/25.
  */
 
-public class TestActivity<T extends BasePersenter> extends BaseActivity implements ITestActivity {
+public class TestActivity<T extends BasePresenter> extends BaseActivity implements ITestActivity {
 
     @BindView(R.id.weekly_weather)
     Button weeklyWeather;
@@ -33,7 +35,7 @@ public class TestActivity<T extends BasePersenter> extends BaseActivity implemen
     }
 
     @Override
-    protected BasePersenter getMyPresenter() {
+    protected BasePresenter getMyPresenter() {
         return mPresenter;
     }
 
@@ -41,7 +43,15 @@ public class TestActivity<T extends BasePersenter> extends BaseActivity implemen
     @Override
     protected void initData() {
         mPresenter = new TestPresenterImpl(this);
-        mPresenter.getWeeklyWeather(cityInfo.getText().toString().trim());
+
+        weeklyWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("dzq", "getData");
+                mPresenter.getWeeklyWeather(cityInfo.getText().toString().trim());
+            }
+        });
+
     }
 
     @Override

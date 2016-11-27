@@ -1,6 +1,6 @@
 package com.dzq.yourweather.presenter.impl;
 
-import com.dzq.yourweather.presenter.BasePersenter;
+import com.dzq.yourweather.presenter.BasePresenter;
 import com.dzq.yourweather.ui.BaseView;
 
 import rx.Subscription;
@@ -11,7 +11,7 @@ import rx.subscriptions.CompositeSubscription;
  * Created by dzq on 2016/11/25.
  */
 
-public class BasePersenterImpl<T extends BaseView> implements BasePersenter<T> {
+public class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
 
     protected T mView;
     protected CompositeSubscription mCompositeSubscription;
