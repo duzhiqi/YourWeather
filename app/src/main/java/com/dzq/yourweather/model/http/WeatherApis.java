@@ -25,37 +25,37 @@ public interface WeatherApis {
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //即时天气
-    @GET("/now")
+    @GET("now")
     Observable<WeatherResponse<NowWeather>> getNowWeather
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //每小时预报
-    @GET("/hourly")
+    @GET("hourly")
     Observable<WeatherResponse<HourlyWeather>> getHourlyWeather
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //生活建议
-    @GET("/suggestion")
+    @GET("suggestion")
     Observable<WeatherResponse<HourlyWeather>> getLifeSuggestion
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //灾害预警
-    @GET("/alarm")
+    @GET("alarm")
     Observable<WeatherResponse<DamageAlarm>> getDamageAlarm
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //包括7-10天预报、实况天气、每小时天气、灾害预警、生活指数、空气质量，一次获取足量数据
-    @GET("/weather")
+    @GET("weather")
     Observable<WeatherResponse<Weather>> getWeather
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //全国4A和5A级景点共2000＋的7天天气预报
-    @GET("/scenic")
+    @GET("scenic")
     Observable<WeatherResponse<SceneWeather>> getSceneWeather
             (@Query("city") String cityInfo, @Query("key") String key);
 
     //通过此接口获取城市信息，例如通过名称获取城市ID，建议使用城市ID获取天气数据，避免重名城市导致的混淆
-    @GET("/search")
+    @GET("search")
     Observable<WeatherResponse<SearchCity>> getSearchCity
     (@Query("city") String cityInfo, @Query("key") String key);
 }
