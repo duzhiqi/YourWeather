@@ -2,12 +2,12 @@ package com.dzq.yourweather.presenter.impl;
 
 import android.util.Log;
 
-import com.dzq.yourweather.model.bean.weather.ForecastWeather;
+import com.dzq.yourweather.model.bean.DailyForecastBean;
+import com.dzq.yourweather.model.bean.domain.ForecastWeather;
 import com.dzq.yourweather.model.http.RetrofitHelper;
 import com.dzq.yourweather.model.http.WeatherResponse;
 import com.dzq.yourweather.presenter.ITestPresenter;
 import com.dzq.yourweather.ui.ITestActivity;
-import com.dzq.yourweather.ui.activity.TestActivity;
 
 import java.util.List;
 
@@ -27,41 +27,43 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
     private RetrofitHelper mRetrofitHelper;
     private ITestActivity mView;
 
-    public TestPresenterImpl(TestActivity view){
-        this.mRetrofitHelper = RetrofitHelper.getInstance();
+    public TestPresenterImpl(ITestActivity view){
+        this.mRetrofitHelper = new RetrofitHelper();
         mView = view;
     }
     @Override
-    public void getWeeklyWeather(String cityInfo) {
-        mView.showProgress();
-        mRetrofitHelper.obtainForecastWeather(cityInfo)
+    public void getWeeklyWeather(final String cityInfo) {
+
+
+        mRetrofitHelper.obtainForecastWeather("hangzhou")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<ForecastWeather>, Observable<ForecastWeather>>() {
                     @Override
-                    public Observable<ForecastWeather> call(WeatherResponse<ForecastWeather> forecastWeatherWeatherResponse) {
-                        List<ForecastWeather> results = forecastWeatherWeatherResponse.getResults();
+                    public Observable<ForecastWeather> call(WeatherResponse<ForecastWeather> forecastWeatherResponse) {
+                        List<ForecastWeather> results = forecastWeatherResponse.getResults();
                         return Observable.from(results);
                     }
-                })
-                .subscribe(new Observer<ForecastWeather>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.e("dzq", "onCompleted");
-                        mView.hideProgress();
-                    }
+                }).subscribe(new Observer<ForecastWeather>() {
+            @Override
+            public void onCompleted() {
+                Log.e("dzq", "onCompleted");
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("dzq", "Error: " + e.getMessage());
-                        mView.showError();
-                    }
+            @Override
+            public void onError(Throwable e) {
+                Log.e("dzq", "onError:" + e.toString());
+            }
 
-                    @Override
-                    public void onNext(ForecastWeather forecastWeather) {
-                        String s = forecastWeather.toString();
-                        mView.showContent(s);
-                    }
-                });
+            @Override
+            public void onNext(ForecastWeather forecastWeather) {
+                List<DailyForecastBean> daily_forecast = forecastWeather.getDaily_forecast();
+                for (DailyForecastBean dailyForecastBean : daily_forecast) {
+                    Log.i("dzq", "dailyForecastBean:" + dailyForecastBean.toString());
+                }
+                Log.e("dzq", "onNext: " + daily_forecast.toString());
+            }
+        });
+
     }
 }

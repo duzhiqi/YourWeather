@@ -11,7 +11,7 @@ import java.io.File;
 
 public class Config {
 
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
 
     public static final String PATH_DATA = /*MyApp.getInstance().getCacheDir().getAbsolutePath()*/Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "/data";
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";

@@ -4,13 +4,13 @@ package com.dzq.yourweather.model.http;
 import android.util.Log;
 
 import com.dzq.yourweather.config.Config;
-import com.dzq.yourweather.model.bean.Weather;
-import com.dzq.yourweather.model.bean.alarm.DamageAlarm;
-import com.dzq.yourweather.model.bean.scenci.SceneWeather;
-import com.dzq.yourweather.model.bean.search.SearchCity;
-import com.dzq.yourweather.model.bean.weather.ForecastWeather;
-import com.dzq.yourweather.model.bean.weather.HourlyWeather;
-import com.dzq.yourweather.model.bean.weather.NowWeather;
+import com.dzq.yourweather.model.bean.domain.ForecastWeather;
+import com.dzq.yourweather.model.bean.domain.DamageAlarm;
+import com.dzq.yourweather.model.bean.domain.HourlyWeather;
+import com.dzq.yourweather.model.bean.domain.LifeSuggestion;
+import com.dzq.yourweather.model.bean.domain.NowWeather;
+import com.dzq.yourweather.model.bean.domain.SceneWeather;
+import com.dzq.yourweather.model.bean.domain.SearchCity;
 import com.dzq.yourweather.util.SystemUtil;
 
 import java.io.File;
@@ -44,17 +44,8 @@ public class RetrofitHelper {
         weatherApiService = getWeatherApiService();
     }
 
-    private RetrofitHelper() {
+    public RetrofitHelper() {
         init();
-    }
-
-    private static RetrofitHelper mInstance;
-
-    public static RetrofitHelper getInstance(){
-        if (mInstance == null) {
-            mInstance = new RetrofitHelper();
-        }
-        return mInstance;
     }
 
     private static void initOkHttp() {
@@ -106,10 +97,10 @@ public class RetrofitHelper {
                 return chain.proceed(request);
             }
         };
-        builder.addNetworkInterceptor(cacheInterceptor);
-        builder.addInterceptor(cacheInterceptor);
+//        builder.addNetworkInterceptor(cacheInterceptor);
+//        builder.addInterceptor(cacheInterceptor);
         builder.addInterceptor(apikey);
-        builder.cache(cache);
+//        builder.cache(cache);
         //设置超时
         builder.connectTimeout(10, TimeUnit.SECONDS);
         builder.readTimeout(20, TimeUnit.SECONDS);
@@ -126,39 +117,44 @@ public class RetrofitHelper {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+        Log.e("dzq", "getWeatherApiService");
         return weatherRetrofit.create(WeatherApis.class);
     }
 
-    public Observable<WeatherResponse<ForecastWeather>> obtainForecastWeather(String cityInfo) {
-        Log.e("dzq", "getData2");
-        return weatherApiService.getForecastWeather(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<ForecastWeather>> obtainForecastWeather(String city) {
+        Log.e("dzq", "weatherApiService:" + weatherApiService.toString() + ", " + okHttpClient.toString());
+        return weatherApiService.getForecastWeather(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<NowWeather>> obtainNowWeather(String cityInfo) {
-        return weatherApiService.getNowWeather(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<NowWeather>> obtainNowWeather(String city) {
+        return weatherApiService.getNowWeather(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<HourlyWeather>> obtainHourlyWeather(String cityInfo) {
-        return weatherApiService.getHourlyWeather(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<HourlyWeather>> obtainHourlyWeather(String city) {
+        return weatherApiService.getHourlyWeather(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<HourlyWeather>> obtainLifeSuggestion(String cityInfo) {
-        return weatherApiService.getLifeSuggestion(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<LifeSuggestion>> obtainLifeSuggestion(String city) {
+        return weatherApiService.getLifeSuggestion(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<SearchCity>> obtainSearchCity(String cityInfo) {
-        return weatherApiService.getSearchCity(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<SearchCity>> obtainSearchCity(String city) {
+        return weatherApiService.getSearchCity(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<SceneWeather>> obtainSceneWeather(String cityInfo) {
-        return weatherApiService.getSceneWeather(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<SceneWeather>> obtainSceneWeather(String city) {
+        return weatherApiService.getSceneWeather(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<DamageAlarm>> obtainDamageAlarm(String cityInfo) {
-        return weatherApiService.getDamageAlarm(cityInfo, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<DamageAlarm>> obtainDamageAlarm(String city) {
+        return weatherApiService.getDamageAlarm(city, Config.MY_WEATHER_KEY);
     }
 
-    public Observable<WeatherResponse<Weather>> obtainAllWeather(String cityInfo) {
-        return weatherApiService.getWeather(cityInfo, Config.MY_WEATHER_KEY);
+//    public Observable<WeatherResponse<Weather>> obtainAllWeather(String city) {
+//        return weatherApiService.getWeather(city, Config.MY_WEATHER_KEY);
+//    }
+
+    public Observable<JsonObj> obtainSearchCityObj(String city) {
+        return weatherApiService.getSearchCityObj(city, Config.MY_WEATHER_KEY);
     }
 }

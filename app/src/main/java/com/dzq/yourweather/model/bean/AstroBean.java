@@ -2,17 +2,15 @@ package com.dzq.yourweather.model.bean;
 
 /**
  * Description:
- * Created by dzq on 2016/11/25.
+ * Created by duzhiqi on 2016/11/29.
  */
 
 public class AstroBean {
-    /**
-     * 天文数值
-     * mr : 02:34 月升时间
-     * ms : 14:40 月落时间
-     * sr : 06:33 日出时间
-     * ss : 16:59 日落时间
-     */
+//    天文数值
+//    "sr": "06:19",  //日出时间
+//     "ss": "17:43" //日落时间
+//    "mr": "04:19",   //月升时间
+//    "ms": "18:07",   //月落时间
 
     private String mr;
     private String ms;

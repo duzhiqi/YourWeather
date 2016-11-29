@@ -42,13 +42,14 @@ public class TestActivity<T extends BasePresenter> extends BaseActivity implemen
 
     @Override
     protected void initData() {
-        mPresenter = new TestPresenterImpl(this);
-
+        mPresenter = new TestPresenterImpl(TestActivity.this);
+//
         weeklyWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("dzq", "getData");
                 mPresenter.getWeeklyWeather(cityInfo.getText().toString().trim());
+//                getMovie();
             }
         });
 
@@ -73,4 +74,40 @@ public class TestActivity<T extends BasePresenter> extends BaseActivity implemen
     public void showError() {
 
     }
+
+
+    //进行网络请求
+//    private void getMovie(){
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Config.BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        WeatherApis weatherApiServices = retrofit.create(WeatherApis.class);
+//        Call<JsonObj> result = weatherApiServices.getSearch("hangzhou", Config.MY_WEATHER_KEY);
+//        result.enqueue(new Callback<JsonObj>() {
+//            @Override
+//            public void onResponse(Call<JsonObj> call, Response<JsonObj> response) {
+//                Log.i("dzq", "response:" + response.toString() );
+//
+//                if (response.isSuccessful()) {
+////                    WeatherResult body = response.body();
+//                    JsonObj body = response.body();
+//                    Log.e("dzq", "body:" + body.toString() );
+//                    List<JsonObj.HeWeather5Bean> heWeather5 = body.getHeWeather5();
+//                    JsonObj.HeWeather5Bean heWeather5Bean = heWeather5.get(0);
+//                    JsonObj.HeWeather5Bean.BasicBean basic = heWeather5Bean.getBasic();
+//                    Log.e("dzq", "city:" + basic.getCity());
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JsonObj> call, Throwable t) {
+//                Log.e("dzq", "error:" + t.getMessage());
+//            }
+//        });
+//    }
+
 }

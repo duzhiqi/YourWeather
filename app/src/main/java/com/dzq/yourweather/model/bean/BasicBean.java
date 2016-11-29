@@ -2,26 +2,29 @@ package com.dzq.yourweather.model.bean;
 
 /**
  * Description:
- * Created by dzq on 2016/11/25.
+ * Created by duzhiqi on 2016/11/29.
  */
 
 public class BasicBean {
+//        "city": "天津",  //城市名称
+//                "cnty": "中国",   //国家
+//                "id": "CN101030100",  //城市ID
+//                "lat": "39.117000", //城市维度
+//                "lon": "117.246000", //城市经度
+//                "prov": "天津"  //城市所属省份（仅限国内城市）
+//                "update": {  //更新时间
+//            "loc": "2016-08-31 11:52",  //当地时间
+//                    "utc": "2016-08-31 03:52" //UTC时间
 
-    /**
-     * city : 杭州
-     * cnty : 中国
-     * id : CN101210101
-     * lat : 30.319000
-     * lon : 120.165000
-     * update : {"loc":"2016-11-25 16:54","utc":"2016-11-25 08:54"}
-     */
 
     private String city;
     private String cnty;
     private String id;
     private String lat;
     private String lon;
+    private String prov;
     private UpdateBean update;
+    private String loc;
 
     public String getCity() {
         return city;
@@ -63,6 +66,14 @@ public class BasicBean {
         this.lon = lon;
     }
 
+    public String getProv() {
+        return prov;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
     public UpdateBean getUpdate() {
         return update;
     }
@@ -71,4 +82,11 @@ public class BasicBean {
         this.update = update;
     }
 
+    public String getLoc() {
+        return loc;
+    }
+
+    public void setLoc(String loc) {
+        this.loc = loc;
+    }
 }

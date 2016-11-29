@@ -1,5 +1,7 @@
 package com.dzq.yourweather.model.http;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -9,6 +11,7 @@ import java.util.List;
 
 public class WeatherResponse<T> {
 
+    @SerializedName("HeWeather5")
     private List<T> results;
 
     public List<T> getResults() {

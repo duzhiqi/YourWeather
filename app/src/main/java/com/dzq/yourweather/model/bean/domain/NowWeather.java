@@ -1,18 +1,20 @@
-package com.dzq.yourweather.model.bean.weather;
+package com.dzq.yourweather.model.bean.domain;
 
 import com.dzq.yourweather.model.bean.BasicBean;
 import com.dzq.yourweather.model.bean.NowBean;
 
+import java.util.List;
+
 /**
  * Description:
- * Created by dzq on 2016/11/25.
+ * Created by duzhiqi on 2016/11/29.
  */
 
 public class NowWeather {
 
     /**
-     * basic : {"city":"杭州","cnty":"中国","id":"CN101210101","lat":"30.319000","lon":"120.165000","update":{"loc":"2016-11-25 16:54","utc":"2016-11-25 08:54"}}
-     * now : {"cond":{"code":"300","txt":"阵雨"},"fl":"7","hum":"95","pcpn":"0.1","pres":"1025","tmp":"6","vis":"1","wind":{"deg":"70","dir":"西北风","sc":"3-4","spd":"11"}}
+     * basic : {"city":"杭州","cnty":"中国","id":"CN101210101","lat":"30.319000","lon":"120.165000","update":{"loc":"2016-11-29 15:54","utc":"2016-11-29 07:54"}}
+     * now : {"cond":{"code":"101","txt":"多云"},"fl":"12","hum":"62","pcpn":"0","pres":"1031","tmp":"12","vis":"10","wind":{"deg":"60","dir":"东风","sc":"3-4","spd":"13"}}
      * status : ok
      */
 
@@ -45,4 +47,6 @@ public class NowWeather {
     }
 
 
+
 }
+

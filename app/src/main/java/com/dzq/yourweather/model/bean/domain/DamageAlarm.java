@@ -1,20 +1,16 @@
-package com.dzq.yourweather.model.bean.alarm;
+package com.dzq.yourweather.model.bean.domain;
 
+import com.dzq.yourweather.model.bean.AlarmsBean;
 import com.dzq.yourweather.model.bean.BasicBean;
 
 /**
  * Description:
- * Created by dzq on 2016/11/25.
+ * Created by duzhiqi on 2016/11/29.
  */
 
 public class DamageAlarm {
-
-    /**
-     * basic : {"city":"杭州","cnty":"中国","id":"CN101210101","lat":"30.319000","lon":"120.165000","update":{"loc":"2016-11-25 18:51","utc":"2016-11-25 10:51"}}
-     * status : ok
-     */
-
     private BasicBean basic;
+    private AlarmsBean alarms;
     private String status;
 
     public BasicBean getBasic() {
@@ -25,6 +21,14 @@ public class DamageAlarm {
         this.basic = basic;
     }
 
+    public AlarmsBean getAlarms() {
+        return alarms;
+    }
+
+    public void setAlarms(AlarmsBean alarms) {
+        this.alarms = alarms;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -32,5 +36,4 @@ public class DamageAlarm {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }

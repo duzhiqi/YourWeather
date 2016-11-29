@@ -1,24 +1,20 @@
-package com.dzq.yourweather.model.bean.weather;
-
-import com.dzq.yourweather.model.bean.CondBean;
-import com.dzq.yourweather.model.bean.WindBean;
+package com.dzq.yourweather.model.bean;
 
 /**
  * Description:
- * Created by dzq on 2016/11/25.
+ * Created by duzhiqi on 2016/11/29.
  */
 
 public class HourlyForecastBean {
     /**
-     * cond : {"code":"305","txt":"小雨"}
-     * date : 2016-11-25 19:00
-     * hum : 83 相对湿度（%）
-     * pop : 39 降水概率
-     * pres : 1026 气压
-     * tmp : 10 温度
-     * wind : {"deg":"256","dir":"西南风","sc":"微风","spd":"5"}
+     * cond : {"code":"101","txt":"多云"}
+     * date : 2016-11-29 16:00
+     * hum : 77
+     * pop : 6
+     * pres : 1030
+     * tmp : 13
+     * wind : {"deg":"65","dir":"东风","sc":"微风","spd":"8"}
      */
-
     private CondBean cond;
     private String date;
     private String hum;
@@ -82,6 +78,5 @@ public class HourlyForecastBean {
     public void setWind(WindBean wind) {
         this.wind = wind;
     }
-
 
 }
