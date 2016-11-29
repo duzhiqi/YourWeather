@@ -1,5 +1,6 @@
 package com.dzq.yourweather.model.http;
 
+import com.dzq.yourweather.model.bean.domain.AllWeather;
 import com.dzq.yourweather.model.bean.domain.DamageAlarm;
 import com.dzq.yourweather.model.bean.domain.ForecastWeather;
 import com.dzq.yourweather.model.bean.domain.HourlyWeather;
@@ -44,10 +45,10 @@ public interface WeatherApis {
     Observable<WeatherResponse<DamageAlarm>> getDamageAlarm
             (@Query("city") String city, @Query("key") String key);
 
-//    //包括7-10天预报、实况天气、每小时天气、灾害预警、生活指数、空气质量，一次获取足量数据
-//    @GET("weather")
-//    Observable<WeatherResponse<Weather>> getWeather
-//            (@Query("city") String city, @Query("key") String key);
+    //包括7-10天预报、实况天气、每小时天气、灾害预警、生活指数、空气质量，一次获取足量数据
+    @GET("weather")
+    Observable<WeatherResponse<AllWeather>> getWeather
+            (@Query("city") String city, @Query("key") String key);
 
     //全国4A和5A级景点共2000＋的7天天气预报
     @GET("scenic")
@@ -59,7 +60,4 @@ public interface WeatherApis {
     Observable<WeatherResponse<SearchCity>> getSearchCity
             (@Query("city") String city, @Query("key") String key);
 
-    @GET("search")
-    Observable<JsonObj> getSearchCityObj
-            (@Query("city") String city, @Query("key") String key);
 }

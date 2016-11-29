@@ -6,4 +6,6 @@ package com.dzq.yourweather.ui;
  */
 public interface ITestActivity extends BaseView {
     void showContent(String content);
+
+    String getCityInfo();
 }

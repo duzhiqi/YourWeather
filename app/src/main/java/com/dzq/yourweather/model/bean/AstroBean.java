@@ -48,4 +48,14 @@ public class AstroBean {
     public void setSs(String ss) {
         this.ss = ss;
     }
+
+    @Override
+    public String toString() {
+        return "AstroBean{" +
+                "mr='" + mr + '\'' +
+                ", ms='" + ms + '\'' +
+                ", sr='" + sr + '\'' +
+                ", ss='" + ss + '\'' +
+                '}';
+    }
 }

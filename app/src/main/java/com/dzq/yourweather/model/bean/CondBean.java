@@ -48,4 +48,14 @@ public class CondBean {
     public void setTxt_n(String txt_n) {
         this.txt_n = txt_n;
     }
+
+    @Override
+    public String toString() {
+        return "CondBean{" +
+                "code_d='" + code_d + '\'' +
+                ", code_n='" + code_n + '\'' +
+                ", txt_d='" + txt_d + '\'' +
+                ", txt_n='" + txt_n + '\'' +
+                '}';
+    }
 }

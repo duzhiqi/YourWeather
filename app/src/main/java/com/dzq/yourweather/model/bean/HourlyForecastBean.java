@@ -79,4 +79,16 @@ public class HourlyForecastBean {
         this.wind = wind;
     }
 
+    @Override
+    public String toString() {
+        return "HourlyForecastBean{" +
+                "cond=" + cond +
+                ", date='" + date + '\'' +
+                ", hum='" + hum + '\'' +
+                ", pop='" + pop + '\'' +
+                ", pres='" + pres + '\'' +
+                ", tmp='" + tmp + '\'' +
+                ", wind=" + wind +
+                '}';
+    }
 }

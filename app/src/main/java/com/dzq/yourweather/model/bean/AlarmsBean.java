@@ -17,6 +17,17 @@ public class AlarmsBean {
     private String stat;
     private String title;
 
+    @Override
+    public String toString() {
+        return "AlarmsBean{" +
+                "level='" + level + '\'' +
+                ", stat='" + stat + '\'' +
+                ", title='" + title + '\'' +
+                ", txt='" + txt + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     public String getLevel() {
         return level;
     }

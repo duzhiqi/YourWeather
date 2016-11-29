@@ -46,4 +46,12 @@ public class HourlyWeather {
         this.hourly_forecast = hourly_forecast;
     }
 
+    @Override
+    public String toString() {
+        return "HourlyWeather{" +
+                "basic=" + basic +
+                ", status='" + status + '\'' +
+                ", hourly_forecast=" + hourly_forecast +
+                '}';
+    }
 }

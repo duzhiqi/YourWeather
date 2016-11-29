@@ -36,4 +36,13 @@ public class DamageAlarm {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "DamageAlarm{" +
+                "basic=" + basic +
+                ", alarms=" + alarms +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

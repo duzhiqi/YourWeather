@@ -89,4 +89,18 @@ public class BasicBean {
     public void setLoc(String loc) {
         this.loc = loc;
     }
+
+    @Override
+    public String toString() {
+        return "BasicBean{" +
+                "city='" + city + '\'' +
+                ", cnty='" + cnty + '\'' +
+                ", id='" + id + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lon='" + lon + '\'' +
+                ", prov='" + prov + '\'' +
+                ", update=" + update +
+                ", loc='" + loc + '\'' +
+                '}';
+    }
 }

@@ -14,4 +14,27 @@ public class SceneWeather {
     private BasicBean basic;
     private List<DailyForecastBean> daily_forecast;
 
+    @Override
+    public String toString() {
+        return "SceneWeather{" +
+                "basic=" + basic +
+                ", daily_forecast=" + daily_forecast +
+                '}';
+    }
+
+    public BasicBean getBasic() {
+        return basic;
+    }
+
+    public void setBasic(BasicBean basic) {
+        this.basic = basic;
+    }
+
+    public List<DailyForecastBean> getDaily_forecast() {
+        return daily_forecast;
+    }
+
+    public void setDaily_forecast(List<DailyForecastBean> daily_forecast) {
+        this.daily_forecast = daily_forecast;
+    }
 }

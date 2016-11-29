@@ -153,6 +153,14 @@ public class LifeSuggestion {
             public void setTxt(String txt) {
                 this.txt = txt;
             }
+
+            @Override
+            public String toString() {
+                return "AirBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
+            }
         }
 
         public static class ComfBean {
@@ -178,6 +186,14 @@ public class LifeSuggestion {
 
             public void setTxt(String txt) {
                 this.txt = txt;
+            }
+
+            @Override
+            public String toString() {
+                return "ComfBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
             }
         }
 
@@ -205,6 +221,14 @@ public class LifeSuggestion {
             public void setTxt(String txt) {
                 this.txt = txt;
             }
+
+            @Override
+            public String toString() {
+                return "CwBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
+            }
         }
 
         public static class DrsgBean {
@@ -230,6 +254,14 @@ public class LifeSuggestion {
 
             public void setTxt(String txt) {
                 this.txt = txt;
+            }
+
+            @Override
+            public String toString() {
+                return "DrsgBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
             }
         }
 
@@ -257,6 +289,14 @@ public class LifeSuggestion {
             public void setTxt(String txt) {
                 this.txt = txt;
             }
+
+            @Override
+            public String toString() {
+                return "FluBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
+            }
         }
 
         public static class SportBean {
@@ -282,6 +322,14 @@ public class LifeSuggestion {
 
             public void setTxt(String txt) {
                 this.txt = txt;
+            }
+
+            @Override
+            public String toString() {
+                return "SportBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
             }
         }
 
@@ -309,6 +357,14 @@ public class LifeSuggestion {
             public void setTxt(String txt) {
                 this.txt = txt;
             }
+
+            @Override
+            public String toString() {
+                return "TravBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
+            }
         }
 
         public static class UvBean {
@@ -334,8 +390,38 @@ public class LifeSuggestion {
 
             public void setTxt(String txt) {
                 this.txt = txt;
+            }
 
+            @Override
+            public String toString() {
+                return "UvBean{" +
+                        "brf='" + brf + '\'' +
+                        ", txt='" + txt + '\'' +
+                        '}';
             }
         }
+
+        @Override
+        public String toString() {
+            return "SuggestionBean{" +
+                    "air=" + air +
+                    ", comf=" + comf +
+                    ", cw=" + cw +
+                    ", drsg=" + drsg +
+                    ", flu=" + flu +
+                    ", sport=" + sport +
+                    ", trav=" + trav +
+                    ", uv=" + uv +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "LifeSuggestion{" +
+                "basic=" + basic +
+                ", status='" + status + '\'' +
+                ", suggestion=" + suggestion +
+                '}';
     }
 }

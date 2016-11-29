@@ -28,4 +28,12 @@ public class TmpBean {
     public void setMax(String max) {
         this.max = max;
     }
+
+    @Override
+    public String toString() {
+        return "TmpBean{" +
+                "max='" + max + '\'' +
+                ", min='" + min + '\'' +
+                '}';
+    }
 }

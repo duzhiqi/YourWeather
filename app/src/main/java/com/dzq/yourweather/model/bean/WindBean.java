@@ -49,4 +49,14 @@ public class WindBean {
     public void setSc(String sc) {
         this.sc = sc;
     }
+
+    @Override
+    public String toString() {
+        return "WindBean{" +
+                "deg='" + deg + '\'' +
+                ", dir='" + dir + '\'' +
+                ", sc='" + sc + '\'' +
+                ", spd='" + spd + '\'' +
+                '}';
+    }
 }

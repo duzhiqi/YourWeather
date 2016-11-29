@@ -46,7 +46,13 @@ public class NowWeather {
         this.status = status;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "NowWeather{" +
+                "basic=" + basic +
+                ", now=" + now +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
 

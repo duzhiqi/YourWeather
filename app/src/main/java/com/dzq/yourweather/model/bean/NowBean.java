@@ -90,4 +90,17 @@ public class NowBean {
         this.wind = wind;
     }
 
+    @Override
+    public String toString() {
+        return "NowBean{" +
+                "cond=" + cond +
+                ", fl='" + fl + '\'' +
+                ", hum='" + hum + '\'' +
+                ", pcpn='" + pcpn + '\'' +
+                ", pres='" + pres + '\'' +
+                ", tmp='" + tmp + '\'' +
+                ", vis='" + vis + '\'' +
+                ", wind=" + wind +
+                '}';
+    }
 }

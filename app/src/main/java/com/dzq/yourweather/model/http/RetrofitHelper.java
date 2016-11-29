@@ -4,6 +4,7 @@ package com.dzq.yourweather.model.http;
 import android.util.Log;
 
 import com.dzq.yourweather.config.Config;
+import com.dzq.yourweather.model.bean.domain.AllWeather;
 import com.dzq.yourweather.model.bean.domain.ForecastWeather;
 import com.dzq.yourweather.model.bean.domain.DamageAlarm;
 import com.dzq.yourweather.model.bean.domain.HourlyWeather;
@@ -150,11 +151,8 @@ public class RetrofitHelper {
         return weatherApiService.getDamageAlarm(city, Config.MY_WEATHER_KEY);
     }
 
-//    public Observable<WeatherResponse<Weather>> obtainAllWeather(String city) {
-//        return weatherApiService.getWeather(city, Config.MY_WEATHER_KEY);
-//    }
-
-    public Observable<JsonObj> obtainSearchCityObj(String city) {
-        return weatherApiService.getSearchCityObj(city, Config.MY_WEATHER_KEY);
+    public Observable<WeatherResponse<AllWeather>> obtainAllWeather(String city) {
+        return weatherApiService.getWeather(city, Config.MY_WEATHER_KEY);
     }
+
 }

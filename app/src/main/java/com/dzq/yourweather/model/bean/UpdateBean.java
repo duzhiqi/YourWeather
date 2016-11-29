@@ -26,4 +26,12 @@ public class UpdateBean {
     public void setUtc(String utc) {
         this.utc = utc;
     }
+
+    @Override
+    public String toString() {
+        return "UpdateBean{" +
+                "loc='" + loc + '\'' +
+                ", utc='" + utc + '\'' +
+                '}';
+    }
 }

@@ -26,4 +26,12 @@ public class SearchCity {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "SearchCity{" +
+                "basic=" + basic +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }
