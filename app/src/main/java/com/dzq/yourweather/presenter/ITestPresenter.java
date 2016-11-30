@@ -16,4 +16,10 @@ public interface ITestPresenter {
     void getLifeSuggestion(String cityIfo);
 
     void getDamageAlarm(String cityIfo);
+
+    void searchCity(String cityInfo);
+
+    void getSceneWeather(String cityInfo);
+
+    void getAllWeather(String cityInfo);
 }

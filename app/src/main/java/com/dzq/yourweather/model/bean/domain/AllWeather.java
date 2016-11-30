@@ -7,6 +7,8 @@ import com.dzq.yourweather.model.bean.DailyForecastBean;
 import com.dzq.yourweather.model.bean.HourlyForecastBean;
 import com.dzq.yourweather.model.bean.NowBean;
 
+import java.util.List;
+
 /**
  * Description:
  * Created by duzhiqi on 2016/11/29.
@@ -17,8 +19,8 @@ public class AllWeather {
     private AlarmsBean alarms;
     private AqiBean aqi;
     private BasicBean basic;
-    private DailyForecastBean daily_forecast;
-    private HourlyForecastBean hourly_forecast;
+    private List<DailyForecastBean> daily_forecast;
+    private List<HourlyForecastBean> hourly_forecast;
     private NowBean now;
     private LifeSuggestion.SuggestionBean suggestion;
 
@@ -68,19 +70,19 @@ public class AllWeather {
         this.basic = basic;
     }
 
-    public DailyForecastBean getDaily_forecast() {
+    public List<DailyForecastBean> getDaily_forecast() {
         return daily_forecast;
     }
 
-    public void setDaily_forecast(DailyForecastBean daily_forecast) {
+    public void setDaily_forecast(List<DailyForecastBean> daily_forecast) {
         this.daily_forecast = daily_forecast;
     }
 
-    public HourlyForecastBean getHourly_forecast() {
+    public List<HourlyForecastBean> getHourly_forecast() {
         return hourly_forecast;
     }
 
-    public void setHourly_forecast(HourlyForecastBean hourly_forecast) {
+    public void setHourly_forecast(List<HourlyForecastBean> hourly_forecast) {
         this.hourly_forecast = hourly_forecast;
     }
 

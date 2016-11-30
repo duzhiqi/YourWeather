@@ -3,11 +3,14 @@ package com.dzq.yourweather.presenter.impl;
 import android.util.Log;
 
 import com.dzq.yourweather.model.bean.DailyForecastBean;
+import com.dzq.yourweather.model.bean.domain.AllWeather;
 import com.dzq.yourweather.model.bean.domain.DamageAlarm;
 import com.dzq.yourweather.model.bean.domain.ForecastWeather;
 import com.dzq.yourweather.model.bean.domain.HourlyWeather;
 import com.dzq.yourweather.model.bean.domain.LifeSuggestion;
 import com.dzq.yourweather.model.bean.domain.NowWeather;
+import com.dzq.yourweather.model.bean.domain.SceneWeather;
+import com.dzq.yourweather.model.bean.domain.SearchCity;
 import com.dzq.yourweather.model.http.RetrofitHelper;
 import com.dzq.yourweather.model.http.WeatherResponse;
 import com.dzq.yourweather.presenter.ITestPresenter;
@@ -32,7 +35,7 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
     private ITestActivity mView;
 
     public TestPresenterImpl(ITestActivity view){
-        this.mRetrofitHelper = new RetrofitHelper();
+        this.mRetrofitHelper = RetrofitHelper.getInstance();
         mView = view;
     }
     @Override
@@ -186,6 +189,98 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                     @Override
                     public void onNext(DamageAlarm damageAlarm) {
                         mView.showContent(damageAlarm.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void searchCity(String cityInfo) {
+        mRetrofitHelper.obtainSearchCity(cityInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Func1<WeatherResponse<SearchCity>, Observable<SearchCity>>() {
+                    @Override
+                    public Observable<SearchCity> call(WeatherResponse<SearchCity> searchCityResponse) {
+                        List<SearchCity> results = searchCityResponse.getResults();
+
+                        return Observable.from(results);
+                    }
+                })
+                .subscribe(new Observer<SearchCity>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(SearchCity searchCity) {
+                        mView.showContent(searchCity.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void getSceneWeather(String cityInfo) {
+        mRetrofitHelper.obtainSceneWeather(cityInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Func1<WeatherResponse<SceneWeather>, Observable<SceneWeather>>() {
+                    @Override
+                    public Observable<SceneWeather> call(WeatherResponse<SceneWeather> sceneWeatherResponse) {
+                        List<SceneWeather> results = sceneWeatherResponse.getResults();
+                        return Observable.from(results);
+                    }
+                })
+                .subscribe(new Observer<SceneWeather>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(SceneWeather sceneWeather) {
+                        mView.showContent(sceneWeather.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void getAllWeather(String cityInfo) {
+        mRetrofitHelper.obtainAllWeather(cityInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Func1<WeatherResponse<AllWeather>, Observable<AllWeather>>() {
+                    @Override
+                    public Observable<AllWeather> call(WeatherResponse<AllWeather> allWeatherResponse) {
+                        List<AllWeather> results = allWeatherResponse.getResults();
+                        return Observable.from(results);
+                    }
+                })
+                .subscribe(new Observer<AllWeather>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d("dzq", "onCompleted");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("dzq", "onError:" + e.toString());
+                    }
+
+                    @Override
+                    public void onNext(AllWeather allWeather) {
+                        Log.d("dzq", "onNext:" + allWeather);
+                        mView.showContent(allWeather.toString());
                     }
                 });
     }

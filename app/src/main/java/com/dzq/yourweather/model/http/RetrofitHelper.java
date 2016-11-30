@@ -39,13 +39,25 @@ public class RetrofitHelper {
 
     private static OkHttpClient okHttpClient = null;
     private static WeatherApis weatherApiService = null;
+    public static RetrofitHelper helper;
+
+    public static RetrofitHelper getInstance(){
+        if (helper == null){
+            synchronized (RetrofitHelper.class){
+                if (helper == null) {
+                    helper = new RetrofitHelper();
+                }
+            }
+        }
+        return helper;
+    }
 
     private void init() {
         initOkHttp();
         weatherApiService = getWeatherApiService();
     }
 
-    public RetrofitHelper() {
+    private RetrofitHelper() {
         init();
     }
 

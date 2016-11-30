@@ -29,6 +29,12 @@ public class TestActivity<T extends BasePresenter> extends BaseActivity implemen
     Button lifeSuggestion;
     @BindView(R.id.damage_alarm)
     Button damageAlarm;
+    @BindView(R.id.search_city)
+    Button searchCity;
+    @BindView(R.id.scene_weather)
+    Button sceneWeather;
+    @BindView(R.id.all_weather)
+    Button allWeather;
     @BindView(R.id.cityInfo)
     EditText cityInfo;
     @BindView(R.id.weekly_weather_content)
@@ -79,6 +85,25 @@ public class TestActivity<T extends BasePresenter> extends BaseActivity implemen
             @Override
             public void onClick(View view) {
                 mPresenter.getDamageAlarm(getCityInfo());
+            }
+        });
+        searchCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.searchCity(getCityInfo());
+            }
+        });
+        sceneWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.getSceneWeather(getCityInfo());
+            }
+        });
+
+        allWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.getAllWeather(getCityInfo());
             }
         });
     }
