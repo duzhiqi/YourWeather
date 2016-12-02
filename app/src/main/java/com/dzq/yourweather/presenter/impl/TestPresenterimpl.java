@@ -14,12 +14,13 @@ import com.dzq.yourweather.model.bean.domain.SearchCity;
 import com.dzq.yourweather.model.http.RetrofitHelper;
 import com.dzq.yourweather.model.http.WeatherResponse;
 import com.dzq.yourweather.presenter.ITestPresenter;
-import com.dzq.yourweather.ui.ITestActivity;
+import com.dzq.yourweather.ui.ITestView;
 
 import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -32,15 +33,15 @@ import rx.schedulers.Schedulers;
 public class TestPresenterImpl extends BasePresenterImpl implements ITestPresenter{
 
     private RetrofitHelper mRetrofitHelper;
-    private ITestActivity mView;
+    private ITestView mView;
 
-    public TestPresenterImpl(ITestActivity view){
+    public TestPresenterImpl(ITestView view){
         this.mRetrofitHelper = RetrofitHelper.getInstance();
         mView = view;
     }
     @Override
     public void getWeeklyWeather(final String cityInfo) {
-        mRetrofitHelper.obtainForecastWeather(cityInfo)
+        Subscription subscribe = mRetrofitHelper.obtainForecastWeather(cityInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<ForecastWeather>, Observable<ForecastWeather>>() {
@@ -50,32 +51,33 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         return Observable.from(results);
                     }
                 }).subscribe(new Observer<ForecastWeather>() {
-            @Override
-            public void onCompleted() {
-                Log.e("dzq", "onCompleted");
-            }
+                    @Override
+                    public void onCompleted() {
+                        Log.e("dzq", "onCompleted");
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Log.e("dzq", "onError:" + e.toString());
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("dzq", "onError:" + e.toString());
+                    }
 
-            @Override
-            public void onNext(ForecastWeather forecastWeather) {
-                mView.showContent(forecastWeather.toString());
-                List<DailyForecastBean> daily_forecast = forecastWeather.getDaily_forecast();
-                for (DailyForecastBean dailyForecastBean : daily_forecast) {
-                    Log.i("dzq", "dailyForecastBean:" + dailyForecastBean.toString());
-                }
-                Log.e("dzq", "onNext: " + daily_forecast.toString());
-            }
-        });
+                    @Override
+                    public void onNext(ForecastWeather forecastWeather) {
+                        mView.showContent(forecastWeather.toString());
+                        List<DailyForecastBean> daily_forecast = forecastWeather.getDaily_forecast();
+                        for (DailyForecastBean dailyForecastBean : daily_forecast) {
+                            Log.i("dzq", "dailyForecastBean:" + dailyForecastBean.toString());
+                        }
+                        Log.e("dzq", "onNext: " + daily_forecast.toString());
+                    }
+                });
+        addSubscribe(subscribe);
 
     }
 
     @Override
     public void getNowWeather(String cityIfo) {
-        mRetrofitHelper.obtainNowWeather(cityIfo)
+        Subscription subscribe = mRetrofitHelper.obtainNowWeather(cityIfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<NowWeather>, Observable<NowWeather>>() {
@@ -101,18 +103,19 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(nowWeather.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 
     @Override
     public void getHourlyWeather(String cityIfo) {
-        mRetrofitHelper.obtainHourlyWeather(cityIfo)
+        Subscription subscribe = mRetrofitHelper.obtainHourlyWeather(cityIfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<HourlyWeather>, Observable<HourlyWeather>>() {
                     @Override
                     public Observable<HourlyWeather> call(WeatherResponse<HourlyWeather> hourlyWeatherResponse) {
                         List<HourlyWeather> results = hourlyWeatherResponse.getResults();
-                        return  Observable.from(results);
+                        return Observable.from(results);
                     }
                 })
                 .subscribe(new Observer<HourlyWeather>() {
@@ -131,11 +134,12 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(hourlyWeather.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 
     @Override
     public void getLifeSuggestion(String cityIfo) {
-        mRetrofitHelper.obtainLifeSuggestion(cityIfo)
+        Subscription subscribe = mRetrofitHelper.obtainLifeSuggestion(cityIfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<LifeSuggestion>, Observable<LifeSuggestion>>() {
@@ -161,11 +165,12 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(lifeSuggestion.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 
     @Override
     public void getDamageAlarm(String cityIfo) {
-        mRetrofitHelper.obtainDamageAlarm(cityIfo)
+        Subscription subscribe = mRetrofitHelper.obtainDamageAlarm(cityIfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<DamageAlarm>, Observable<DamageAlarm>>() {
@@ -191,11 +196,12 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(damageAlarm.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 
     @Override
     public void searchCity(String cityInfo) {
-        mRetrofitHelper.obtainSearchCity(cityInfo)
+        Subscription subscribe = mRetrofitHelper.obtainSearchCity(cityInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<SearchCity>, Observable<SearchCity>>() {
@@ -222,11 +228,12 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(searchCity.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 
     @Override
     public void getSceneWeather(String cityInfo) {
-        mRetrofitHelper.obtainSceneWeather(cityInfo)
+        Subscription subscribe = mRetrofitHelper.obtainSceneWeather(cityInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<SceneWeather>, Observable<SceneWeather>>() {
@@ -252,11 +259,12 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(sceneWeather.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 
     @Override
     public void getAllWeather(String cityInfo) {
-        mRetrofitHelper.obtainAllWeather(cityInfo)
+        Subscription subscribe = mRetrofitHelper.obtainAllWeather(cityInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Func1<WeatherResponse<AllWeather>, Observable<AllWeather>>() {
@@ -283,5 +291,6 @@ public class TestPresenterImpl extends BasePresenterImpl implements ITestPresent
                         mView.showContent(allWeather.toString());
                     }
                 });
+        addSubscribe(subscribe);
     }
 }

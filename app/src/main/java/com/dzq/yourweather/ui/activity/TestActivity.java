@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.dzq.yourweather.R;
 import com.dzq.yourweather.presenter.BasePresenter;
 import com.dzq.yourweather.presenter.impl.TestPresenterImpl;
-import com.dzq.yourweather.ui.ITestActivity;
+import com.dzq.yourweather.ui.ITestView;
 
 import butterknife.BindView;
 
@@ -17,7 +17,7 @@ import butterknife.BindView;
  * Created by dzq on 2016/11/25.
  */
 
-public class TestActivity<T extends BasePresenter> extends BaseActivity implements ITestActivity {
+public class TestActivity<T extends BasePresenter> extends BaseActivity implements ITestView {
 
     @BindView(R.id.weekly_weather)
     Button weeklyWeather;
@@ -74,7 +74,6 @@ public class TestActivity<T extends BasePresenter> extends BaseActivity implemen
                 mPresenter.getHourlyWeather(getCityInfo());
             }
         });
-
         lifeSuggestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +98,6 @@ public class TestActivity<T extends BasePresenter> extends BaseActivity implemen
                 mPresenter.getSceneWeather(getCityInfo());
             }
         });
-
         allWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

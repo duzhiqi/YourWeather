@@ -11,11 +11,31 @@ public class CondBean {
 //    "code_n": "101",  //夜间天气状况代码
 //    "txt_d": "多云",  //白天天气状况描述
 //    "txt_n": "多云" //夜间天气状况描述
+//    "code": "104",  //天气状况代码,实况天气
+//    "txt": "阴"  //天气状况描述，实况天气
 
     private String code_d;
     private String code_n;
     private String txt_d;
     private String txt_n;
+    private String code;
+    private String txt;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getTxt() {
+        return txt;
+    }
+
+    public void setTxt(String txt) {
+        this.txt = txt;
+    }
 
     public String getCode_d() {
         return code_d;
@@ -56,6 +76,8 @@ public class CondBean {
                 ", code_n='" + code_n + '\'' +
                 ", txt_d='" + txt_d + '\'' +
                 ", txt_n='" + txt_n + '\'' +
+                ", code='" + code + '\'' +
+                ", txt='" + txt + '\'' +
                 '}';
     }
 }

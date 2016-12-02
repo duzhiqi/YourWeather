@@ -21,6 +21,8 @@ public class Config {
 
     public static final String BASE_URL = "https://free-api.heweather.com/v5/";
 
+    public static final String WEATHER_ICON_URL = "http://files.heweather.com/cond_icon/";
+
     /**
      * 个人认证key
      */
